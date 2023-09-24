@@ -26,6 +26,10 @@ dependencies {
     implementation 'com.thedeanda:lorem:2.2'
     testImplementation 'junit:junit:4.13.1'
 
+    // Pojo Class
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2.2'
+
+
 }
 
 test {
