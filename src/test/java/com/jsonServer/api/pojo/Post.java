@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Post {
 
     @JsonProperty("id")
-    public Long id;
+    private Long id;
     @JsonProperty("title")
-    public String title;
+    private String title;
     @JsonProperty("author")
-    public String author;
+    private String author;
 
     /**
      * No args constructor for use in serialization
@@ -38,4 +38,15 @@ public class Post {
         this.author = author;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
 }
