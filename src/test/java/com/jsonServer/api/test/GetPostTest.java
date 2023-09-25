@@ -9,6 +9,7 @@ public class GetPostTest extends BaseTest{
     @Test
     public void getPostShouldSuccess(){
         given()
+                .port(3000)
                 .contentType(ContentType.JSON)
                 .log().uri()
                 .when()
@@ -20,6 +21,7 @@ public class GetPostTest extends BaseTest{
     @Test
     public void getPostDetailShouldSuccess(){
         given()
+                .port(3000)
                 .contentType(ContentType.JSON)
                 .log().uri()
                 .when()

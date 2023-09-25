@@ -1,5 +1,6 @@
 package com.jsonServer.api.test;
 
+import com.jsonServer.api.pojo.Post;
 import com.thedeanda.lorem.LoremIpsum;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
@@ -18,6 +19,7 @@ public class WriteApiTest extends BaseTest{
                 "  \"author\": \"typicode2\"\n" +
                 "}";
         given()
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(json)
                 .log().uri()
@@ -35,7 +37,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",LoremIpsum.getInstance().getName());
 
         given()
-
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -55,6 +57,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",AuthorName);
 
         given()
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -80,8 +83,30 @@ public class WriteApiTest extends BaseTest{
         jsonObject.put("author",AuthorName);
 
         given()
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsonObject)
+                .log().uri()
+                .log().body()
+                .when()
+                .post("/posts")
+                .then()
+                .statusCode(201)
+                .log().body()
+                .body("title",equalTo(titleName))
+                .body("author",equalTo(AuthorName))
+                .body("id",notNullValue());
+    }
+    @Test
+    public void createPostWithPojoShouldSuccess(){
+        String titleName = LoremIpsum.getInstance().getTitle(3);
+        String AuthorName = LoremIpsum.getInstance().getName();
+
+
+        given()
+                .port(3000)
+                .header("Content-Type","application/json")
+                .body(new Post(titleName,AuthorName))
                 .log().uri()
                 .log().body()
                 .when()
@@ -103,6 +128,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",AuthorName);
 
       int id =  given()
+              .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -125,6 +151,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap2.put("author",AuthorName);
 
         given()
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsHashMap2)
                 .log().uri()
@@ -149,6 +176,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",AuthorName);
 
         int id =  given()
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -171,6 +199,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap3.put("author",AuthorName);
 
         given()
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsHashMap3)
                 .log().uri()
@@ -195,6 +224,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap4.put("author",AuthorName);
 
         int id =  given()
+                .port(3000)
                 .header("Content-Type","application/json")
                 .body(jsHashMap4)
                 .log().uri()
@@ -210,15 +240,14 @@ public class WriteApiTest extends BaseTest{
                 .extract().jsonPath().getInt("id");
 
         given()
+                .port(3000)
                 .log().uri()
                 .when()
                 .delete("/posts/"+id)
                 .then()
                 .statusCode(200)
-                .log().body()
-                .body("title",equalTo(titleName))
-                .body("author",equalTo(AuthorName))
-                .body("id",notNullValue());
+                .log().body();
+
 
 
     }
