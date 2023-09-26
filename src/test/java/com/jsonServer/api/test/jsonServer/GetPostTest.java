@@ -1,11 +1,11 @@
-package com.jsonServer.api.test;
+package com.jsonServer.api.test.jsonServer;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class GetPostTest extends BaseTest{
+public class GetPostTest extends BaseJsonServerApiTest {
     @Test
     public void getPostShouldSuccess(){
         given()

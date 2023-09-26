@@ -1,8 +1,7 @@
-package com.jsonServer.api.pojo;
+package com.jsonServer.api.test.jsonServer.pojo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
@@ -28,11 +27,11 @@ public class Post {
      * @param id
      * @param title
      */
-    public Post(Long id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-    }
+//    public Post(Long id, String title, String author) {
+//        this.id = id;
+//        this.title = title;
+//        this.author = author;
+//    }
     public Post( String title, String author) {
         this.title = title;
         this.author = author;

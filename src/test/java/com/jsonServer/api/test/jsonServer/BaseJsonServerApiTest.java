@@ -1,10 +1,10 @@
-package com.jsonServer.api.test;
+package com.jsonServer.api.test.jsonServer;
 
 
 import io.restassured.RestAssured;
 import org.junit.BeforeClass;
 
-public abstract class BaseTest {
+public abstract class BaseJsonServerApiTest {
 
     @BeforeClass
     public void setUp(){

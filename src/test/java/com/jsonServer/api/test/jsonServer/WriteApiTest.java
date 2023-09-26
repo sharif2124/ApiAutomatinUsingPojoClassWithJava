@@ -1,21 +1,19 @@
-package com.jsonServer.api.test;
+package com.jsonServer.api.test.jsonServer;
 
-import com.jsonServer.api.pojo.Post;
+import com.jsonServer.api.test.jsonServer.pojo.Post;
 import com.thedeanda.lorem.LoremIpsum;
 import io.restassured.http.ContentType;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
-
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-public class WriteApiTest extends BaseTest{
+public class WriteApiTest extends BaseJsonServerApiTest {
     @Test
     public void createPostShouldSuccess(){
         String json = "{\n" +
@@ -100,7 +98,7 @@ public class WriteApiTest extends BaseTest{
                 .body("title",equalTo(titleName))
                 .body("author",equalTo(AuthorName))
                 .body("id",notNullValue())
-                .extract().jsonPath().getObject("",Post.class);
+                .extract().jsonPath().getObject("", Post.class);
     }
     @Test
     public void createPostWithPojoShouldSuccess(){
@@ -405,9 +403,9 @@ public class WriteApiTest extends BaseTest{
                 .port(3000)
                 .log().uri()
                 .when()
-                .delete("/posts/"+id)
+                .delete("/posts"+id)
                 .then()
-                .statusCode(200)
+                .statusCode(404)
                 .log().body();
 
 
