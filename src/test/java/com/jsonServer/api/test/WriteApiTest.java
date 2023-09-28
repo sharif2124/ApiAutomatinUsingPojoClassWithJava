@@ -23,7 +23,7 @@ public class WriteApiTest extends BaseTest{
                 "  \"author\": \"typicode2\"\n" +
                 "}";
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(json)
                 .log().uri()
@@ -41,7 +41,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",LoremIpsum.getInstance().getName());
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -61,7 +61,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",AuthorName);
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -87,7 +87,7 @@ public class WriteApiTest extends BaseTest{
         jsonObject.put("author",AuthorName);
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsonObject)
                 .log().uri()
@@ -109,7 +109,7 @@ public class WriteApiTest extends BaseTest{
 
 
           Post post =    given()
-                .port(3000)
+                  .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(new Post(titleName,AuthorName))
                 .log().uri()
@@ -137,7 +137,7 @@ public class WriteApiTest extends BaseTest{
 
 
         Long id =  given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(new Post(titleName,AuthorName))
                 .log().uri()
@@ -158,7 +158,7 @@ public class WriteApiTest extends BaseTest{
 
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(new Post(titleName,AuthorName))
                 .log().uri()
@@ -178,7 +178,7 @@ public class WriteApiTest extends BaseTest{
     public void updatePostFromListShouldSuccess(){
 
      List<Post> postList =   given()
-                .port(3000)
+             .spec(getBase())
                 .contentType(ContentType.JSON)
                 .log().uri()
                 .when()
@@ -195,7 +195,7 @@ public class WriteApiTest extends BaseTest{
 
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(new Post(titleName,AuthorName))
                 .log().uri()
@@ -226,7 +226,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",AuthorName);
 
       int id =  given()
-              .port(3000)
+              .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -249,7 +249,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap2.put("author",AuthorName);
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsHashMap2)
                 .log().uri()
@@ -275,7 +275,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap.put("author",AuthorName);
 
         int id =  given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsHashMap)
                 .log().uri()
@@ -298,7 +298,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap3.put("author",AuthorName);
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsHashMap3)
                 .log().uri()
@@ -323,7 +323,7 @@ public class WriteApiTest extends BaseTest{
         jsHashMap4.put("author",AuthorName);
 
         int id =  given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(jsHashMap4)
                 .log().uri()
@@ -339,7 +339,7 @@ public class WriteApiTest extends BaseTest{
                 .extract().jsonPath().getInt("id");
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .log().uri()
                 .when()
                 .delete("/posts/"+id)
@@ -358,7 +358,7 @@ public class WriteApiTest extends BaseTest{
 
 
         int id =  given()
-                .port(3000)
+                .spec(getBase())
                 .header("Content-Type","application/json")
                 .body(new Post(titleName,AuthorName))
                 .log().uri()
@@ -374,7 +374,7 @@ public class WriteApiTest extends BaseTest{
                 .extract().jsonPath().getInt("id");
 
         given()
-                .port(3000)
+                .spec(getBase())
                 .log().uri()
                 .when()
                 .delete("/posts/"+id)
@@ -390,7 +390,7 @@ public class WriteApiTest extends BaseTest{
     public void deletePostFromListShouldSuccess(){
 
         List<Post> postList =   given()
-                .port(3000)
+                .spec(getBase())
                 .contentType(ContentType.JSON)
                 .log().uri()
                 .when()
@@ -402,7 +402,7 @@ public class WriteApiTest extends BaseTest{
 
         long id = postList.get(0).getId();
         given()
-                .port(3000)
+                .spec(getBase())
                 .log().uri()
                 .when()
                 .delete("/posts/"+id)
